@@ -11,8 +11,9 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    #render plain: params[:article].inspect
+    #render plain: params[:article].inspect # prints contents on page
     @article = Article.new(article_params)
+    @article.user = User.first #hardcode user for now, so creating articles still work
     if @article.save
       flash[:success] = "Article was succesfully created"
       redirect_to article_path(@article)
